@@ -15,7 +15,7 @@ from scipy.optimize import minimize
 
 st.set_page_config(
     page_title="Real-Time Inventory Simulation Dashboard",
-    page_icon="✅",
+    page_icon="📦",
     layout="wide",
 )
 
