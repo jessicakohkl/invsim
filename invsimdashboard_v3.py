@@ -22,7 +22,7 @@ st.set_page_config(
 st.title("Real-Time Inventory Simulation Dashboard")
 
 with st.container():
-    st.write("This is inside the container")
+    st.header("Time Series Forecasting")
 
 
 # Function to perform double exponential smoothing
@@ -148,7 +148,7 @@ else:
 
 
 with st.container():
-    st.write("This is inside another the container")
+    st.header("Inventory Simulation")
 
 
 # Define parameters for each medicine (customize as per your data)
