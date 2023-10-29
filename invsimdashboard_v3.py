@@ -35,8 +35,8 @@ def simple_exponential_smoothing(data):
 
 # List of file paths
 file_paths = [
-    r'/Users/jessicakoh/Library/Mobile Documents/com~apple~CloudDocs/Personal/NUS-ISS Master of Technology in Enterprise Business Analytics/_Semester 1 - 2023:2024/MTech Practice Module/data/medications_dispensed_-_monthly_breakdown_2023_10_09_TEST.xlsx',
-    r'/Users/jessicakoh/Library/Mobile Documents/com~apple~CloudDocs/Personal/NUS-ISS Master of Technology in Enterprise Business Analytics/_Semester 1 - 2023:2024/MTech Practice Module/data/grouped_inv_24m_R702010.csv',
+    r'/docs/medications_dispensed_-_monthly_breakdown_2023_10_09_TEST.xlsx',
+    r'/docs/grouped_inv_24m_R702010.csv',
     # Add more file paths as needed
 ]
 
