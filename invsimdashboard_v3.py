@@ -33,13 +33,11 @@ def double_exponential_smoothing(data):
 def simple_exponential_smoothing(data):
     return ExponentialSmoothing(data).fit(method='least_squares')
 
-# List of file paths
+# List of file URLs on GitHub
 file_paths = [
-    r'/docs/medications_dispensed_-_monthly_breakdown_2023_10_09_TEST.xlsx',
-    r'/docs/grouped_inv_24m_R702010.csv',
-    # Add more file paths as needed
+    "https://raw.githubusercontent.com/jessicakohkl/invsim/main/docs/grouped_inv_24m_R702010.csv",
+    "https://raw.githubusercontent.com/jessicakohkl/invsim/main/docs/medications_dispensed_-_monthly_breakdown_2023_10_09_TEST.xlsx",
 ]
-
 # Load data
 data_dict = {}
 for path in file_paths:
