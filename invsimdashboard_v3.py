@@ -150,12 +150,11 @@ else:
 with st.container():
     st.header("Inventory Simulation")
 
-
 # Define parameters for each medicine (customize as per your data)
 medicine_data = [
     {
         'medicine_name': 'Serratiopeptidase 5mg tab (Danzen)',
-        'initial_inventory': 150000,
+        'initial_inventory': 150000.0,
         'forecasted_demand': 164882.517995,         # Average monthly demand
         'upper_confidence_limit': 193030.597836,  # Upper confidence limit for demand
         'lower_confidence_limit': 136734.438154,  # Lower confidence limit for demand
@@ -167,7 +166,7 @@ medicine_data = [
     },
     {
         'medicine_name': '* Mometasone 0.1% cream (15g) (Elomet)',
-        'initial_inventory': 100,
+        'initial_inventory': 100.0,
         'forecasted_demand': 150.442797,         # Average monthly demand
         'upper_confidence_limit': 186.492605,  # Upper confidence limit for demand
         'lower_confidence_limit': 114.39299,  # Lower confidence limit for demand
@@ -179,7 +178,7 @@ medicine_data = [
     },
     {
         'medicine_name': 'Azithromycin 250mg tab (Imexa)',
-        'initial_inventory': 500,
+        'initial_inventory': 500.0,
         'forecasted_demand': 606.565514,         # Average monthly demand
         'upper_confidence_limit': 776.957756,  # Upper confidence limit for demand
         'lower_confidence_limit': 436.173272,  # Lower confidence limit for demand
@@ -190,6 +189,31 @@ medicine_data = [
         'holding_cost_per_unit': 0.05,  # Holding cost per unit
     }
 ]
+
+def get_medicine_parameters(selected_medicine, medicine_data):
+    for data in medicine_data:
+        if data['medicine_name'] == selected_medicine:
+            return data
+    return None
+
+
+selected_medicine_parameters = get_medicine_parameters(make_choice, medicine_data)
+
+
+if selected_medicine_parameters:
+    # Use the selected medicine's parameters to populate user input fields
+    st.text_input('Medicine Name', selected_medicine_parameters['medicine_name'])
+    st.number_input('Initial Inventory', min_value=0.0, value=selected_medicine_parameters['initial_inventory'])
+    st.number_input('Forecasted Demand', min_value=0.0, value=selected_medicine_parameters['forecasted_demand'])
+    st.number_input('Upper Confidence Limit', min_value=0.0, value=selected_medicine_parameters['upper_confidence_limit'])
+    st.number_input('Lower Confidence Limit', min_value=0.0, value=selected_medicine_parameters['lower_confidence_limit'])
+    st.number_input('Lead Time Mean (days)', min_value=0, value=selected_medicine_parameters['lead_time_mean'])
+    st.number_input('Lead Time Std Dev', min_value=0, value=selected_medicine_parameters['lead_time_std_dev'])
+    st.number_input('Confidence Level (0-1)', min_value=0.0, max_value=1.0, value=selected_medicine_parameters['confidence_level'])
+    st.number_input('Order Cost', min_value=0.0, value=selected_medicine_parameters['order_cost'])
+    st.number_input('Holding Cost Per Unit', min_value=0.0, value=selected_medicine_parameters['holding_cost_per_unit'])
+else:
+    st.write("Medicine not found in the list.")
 
 def calculate_optimal_restocking(medicine):
     forecasted_demand = medicine['forecasted_demand']
