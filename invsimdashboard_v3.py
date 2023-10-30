@@ -310,7 +310,7 @@ if selected_medicine:
         st.write('Inventory Movement Plot:')
         plt.figure(figsize=(12, 6))
         plt.plot(range(1, 92), inventory_levels, marker='o', linestyle='-')
-        plt.axhline(y=restock_point, color='r', linestyle='--', label='Restock Point')
+        plt.axhline(y=restock_point, color='g', linestyle='--', label='Restock Point')
         plt.axhline(y=safety_stock, color='r', linestyle='--', label='Safety Stock')
         plt.xlabel('Day')
         plt.ylabel('Inventory Level')
