@@ -149,7 +149,7 @@ else:
 
 with st.container():
     st.header("Inventory Simulation")
-
+c1, c2 = st.columns(2)
 # Define parameters for each medicine (customize as per your data)
 medicine_data = [
     {
@@ -202,16 +202,18 @@ selected_medicine_parameters = get_medicine_parameters(make_choice, medicine_dat
 
 if selected_medicine_parameters:
     # Use the selected medicine's parameters to populate user input fields
-    st.text_input('Medicine Name', selected_medicine_parameters['medicine_name'])
-    st.number_input('Initial Inventory', min_value=0.0, value=selected_medicine_parameters['initial_inventory'])
-    st.number_input('Forecasted Demand', min_value=0.0, value=selected_medicine_parameters['forecasted_demand'])
-    st.number_input('Upper Confidence Limit', min_value=0.0, value=selected_medicine_parameters['upper_confidence_limit'])
-    st.number_input('Lower Confidence Limit', min_value=0.0, value=selected_medicine_parameters['lower_confidence_limit'])
-    st.number_input('Lead Time Mean (days)', min_value=0, value=selected_medicine_parameters['lead_time_mean'])
-    st.number_input('Lead Time Std Dev', min_value=0, value=selected_medicine_parameters['lead_time_std_dev'])
-    st.number_input('Confidence Level (0-1)', min_value=0.0, max_value=1.0, value=selected_medicine_parameters['confidence_level'])
-    st.number_input('Order Cost', min_value=0.0, value=selected_medicine_parameters['order_cost'])
-    st.number_input('Holding Cost Per Unit', min_value=0.0, value=selected_medicine_parameters['holding_cost_per_unit'])
+    with c1:
+        st.text_input('Medicine Name', selected_medicine_parameters['medicine_name'])
+        st.number_input('Initial Inventory', min_value=0.0, value=selected_medicine_parameters['initial_inventory'])
+        st.number_input('Forecasted Demand', min_value=0.0, value=selected_medicine_parameters['forecasted_demand'])
+        st.number_input('Upper Confidence Limit', min_value=0.0, value=selected_medicine_parameters['upper_confidence_limit'])
+        st.number_input('Lower Confidence Limit', min_value=0.0, value=selected_medicine_parameters['lower_confidence_limit'])
+    with c2:
+        st.number_input('Lead Time Mean (days)', min_value=0, value=selected_medicine_parameters['lead_time_mean'])
+        st.number_input('Lead Time Std Dev', min_value=0, value=selected_medicine_parameters['lead_time_std_dev'])
+        st.number_input('Confidence Level (0-1)', min_value=0.0, max_value=1.0, value=selected_medicine_parameters['confidence_level'])
+        st.number_input('Order Cost', min_value=0.0, value=selected_medicine_parameters['order_cost'])
+        st.number_input('Holding Cost Per Unit', min_value=0.0, value=selected_medicine_parameters['holding_cost_per_unit'])
 else:
     st.write("Medicine not found in the list.")
 
@@ -283,11 +285,8 @@ def simulate_inventory(medicine):
 inventory_data = []
 holding_costs_data = []
 
-# Sidebar options
-# make_choice = st.sidebar.selectbox('Select medication:', makes)
 
 selected_medicine = make_choice
-# selected_medicine = st.sidebar.selectbox('Select Medicine', [medicine['medicine_name'] for medicine in medicine_data])
 
 if selected_medicine:
     # Find the selected medicine
